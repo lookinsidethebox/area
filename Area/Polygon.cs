@@ -30,7 +30,7 @@ namespace Area
 				result += (Vertexes[i].X + Vertexes[i + 1].X) * (Vertexes[i + 1].Y - Vertexes[i].Y);
 			}
 			result += (Vertexes[Vertexes.Count - 1].X + Vertexes[0].X) * (Vertexes[0].Y - Vertexes[Vertexes.Count - 1].Y);
-			return result / 2;
+			return Math.Abs(result / 2);
 		}
 	}
 

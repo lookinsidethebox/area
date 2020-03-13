@@ -4,9 +4,9 @@ namespace Area
 {
 	public class Circle : Figure
 	{
-		public int Radius { get; set; }
+		public double Radius { get; set; }
 
-		public Circle(int radius)
+		public Circle(double radius)
 		{
 			if (radius <= 0)
 			{

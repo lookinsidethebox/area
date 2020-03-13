@@ -4,16 +4,24 @@ namespace Area
 {
 	public class Rectangle : Figure
 	{
-		public int FirstSide { get; set; }
-		public int SecondSide { get; set; }
-		public int ThirdSide { get; set; }
+		public double FirstSide { get; set; }
+		public double SecondSide { get; set; }
+		public double ThirdSide { get; set; }
 
-		public Rectangle(int firstSide, int secondSide, int thirdSide)
+		public Rectangle(double firstSide, double secondSide, double thirdSide)
 		{
 			if (firstSide <= 0 || secondSide <= 0 || thirdSide <= 0)
 			{
 				throw new Exception("Ни одна из сторон треугольника не может быть меньше или равна 0");
 			}
+
+			if (firstSide >= secondSide + thirdSide ||
+				secondSide >= firstSide + thirdSide ||
+				thirdSide >= firstSide + secondSide)
+			{
+				throw new Exception("Одна сторона треугольника больше суммы двух других сторон - такого треугольника не существует");
+			}
+
 			FirstSide = firstSide;
 			SecondSide = secondSide;
 			ThirdSide = thirdSide;
@@ -21,7 +29,7 @@ namespace Area
 
 		public override double CalculateArea()
 		{
-			double halfOfPerimeter = (FirstSide + SecondSide + ThirdSide) / 2;
+			var halfOfPerimeter = (FirstSide + SecondSide + ThirdSide) / 2;
 			return Math.Sqrt(halfOfPerimeter * (halfOfPerimeter - FirstSide) * (halfOfPerimeter - SecondSide) * (halfOfPerimeter - ThirdSide));
 		}
 
@@ -45,7 +53,7 @@ namespace Area
 			return false;
 		}
 
-		private bool CheckPythagorasTheorem(int longestSide, int secondSide, int thirdSide)
+		private bool CheckPythagorasTheorem(double longestSide, double secondSide, double thirdSide)
 		{
 			return Math.Pow(longestSide, 2) == Math.Pow(secondSide, 2) + Math.Pow(thirdSide, 2);
 		}
